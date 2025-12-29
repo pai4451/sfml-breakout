@@ -1,60 +1,56 @@
+// Code for a "breakout" game
+// Based on a talk by Vittorio Romeo
+// Uses the SFML graphics library
 #include <SFML/Graphics.hpp>
 
+#include <string>
+#include "constants.h"
+
+using namespace std::literals;
+
+// The main function for the program
 int main() {
-	// 建一個 800x600 的視窗
-	sf::RenderWindow window(sf::VideoMode(800, 600), "My First SFML Window");
+	// Create the game's window using an object of class RenderWindow
+	// The constructor takes an SFML 2D vector with the window dimensions
+	// and an std::string with the window title
+	// The SFML code is in the sf namespace
+	sf::RenderWindow game_window{
+	{ static_cast<unsigned int>(constants::window_width),
+	  static_cast<unsigned int>(constants::window_height) },
+	"Simple Breakout Game Version 1"s,
+	};
 
-	// 限制 FPS（避免 CPU 100%）
-	window.setFramerateLimit(60);
 
-	// 一個代表玩家的小圓形
-	float radius = 40.f;
-	sf::CircleShape player(radius);
-	player.setFillColor(sf::Color::Green);
+	// Limit the framerate
+	// This allows other processes to run and reduces power consumption
+	game_window.setFramerateLimit(60);      // Max rate is 60 frames per second
 
-	// 把圓的原點設在中心，方便以中心移動
-	player.setOrigin(radius, radius);
-	player.setPosition(400.f, 300.f);  // 螢幕中心附近
+	// Game loop
+	// Clear the screen
+	// Check for new events
+	// Calculate the updated graphics
+	// Display the updated graphics
+	while (game_window.isOpen()) {
+		// Clear the screen
+		game_window.clear(sf::Color::Black);
 
-	const float speed = 200.f; // 每秒 200 pixel
-	sf::Clock clock;           // 用來計算 delta time
-
-	// 遊戲主迴圈
-	while (window.isOpen()) {
-		// 處理事件（關閉視窗等）
+		// Check for any events since the last loop iteration
 		sf::Event event;
-		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed) {
-				window.close();
-			}
+
+		// If the user pressed "Escape", or clicked on "close", we close the window
+		// This will terminate the program
+		while (game_window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed)
+				game_window.close();
 		}
 
-		// 計算這一幀過了多少秒
-		float dt = clock.restart().asSeconds();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+			game_window.close();
 
-		// 鍵盤輸入 → 計算移動向量
-		sf::Vector2f movement(0.f, 0.f);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-			movement.x -= speed * dt;
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-			movement.x += speed * dt;
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-			movement.y -= speed * dt;
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-			movement.y += speed * dt;
-		}
+		// Calculate the updated graphics
+		// This space left intentionally blank!
 
-		// 移動玩家
-		player.move(movement);
-
-		// 清畫面 → 畫東西 → 顯示到螢幕
-		window.clear(sf::Color::Black);
-		window.draw(player);
-		window.display();
+		// Display the updated graphics
+		game_window.display();
 	}
-
-	return 0;
 }
