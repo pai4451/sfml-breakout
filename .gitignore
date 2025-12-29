@@ -1,0 +1,27 @@
+# ---- Visual Studio temporary files ----
+.vs/
+*.vscode/
+
+# Build outputs
+Debug/
+Release/
+x64/
+x86/
+ipch/
+
+# Object / intermediate files
+*.obj
+*.pch
+*.pdb
+*.idb
+*.ilk
+*.log
+
+# Other common VS artifacts
+*.user
+*.suo
+*.cache
+*.sdf
+*.opensdf
+
+# SFML executables / DLLs (will be copied at runtime,
