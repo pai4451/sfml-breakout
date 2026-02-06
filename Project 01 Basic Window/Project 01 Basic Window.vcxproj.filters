@@ -18,9 +18,18 @@
     <ClCompile Include="main.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="background.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\下載\03_sprite\03_sprite\background.h">
+      <Filter>標頭檔</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>
