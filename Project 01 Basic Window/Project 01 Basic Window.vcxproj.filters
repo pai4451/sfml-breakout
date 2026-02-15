@@ -24,6 +24,9 @@
     <ClCompile Include="ball.cpp">
       <Filter>來源檔案</Filter>
     </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
