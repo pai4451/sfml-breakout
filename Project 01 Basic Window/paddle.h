@@ -12,6 +12,9 @@ class paddle : public moving_entity {
 	// Private data and member functions
 	static sf::Texture texture;
 
+	// Respond to input from the player
+	void process_player_input();
+
 public:
 	// Interface of the class
 
