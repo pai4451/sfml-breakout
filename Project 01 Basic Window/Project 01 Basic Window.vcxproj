@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="background.cpp" />
     <ClCompile Include="ball.cpp" />
+    <ClCompile Include="brick.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="interactions.cpp" />
     <ClCompile Include="main.cpp" />
@@ -28,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ball.h" />
+    <ClInclude Include="brick.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="D:\下載\03_sprite\03_sprite\background.h" />
     <ClInclude Include="entity.h" />
