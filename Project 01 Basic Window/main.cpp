@@ -27,7 +27,7 @@ int main() {
 	paddle the_paddle(constants::window_width / 2.0f, constants::window_height - constants::paddle_height);
 
 	// Create the grid of bricks
-	// We will use an std::vector to store them
+   // We will use an std::vector to store them
 	std::vector<brick> bricks;
 
 	for (int i = 0; i < constants::brick_columns; ++i) {
@@ -45,8 +45,8 @@ int main() {
 	// The constructor takes an SFML 2D vector with the window dimensions
 	// and an std::string with the window title
 	// The SFML code is in the sf namespace
-	sf::RenderWindow game_window{ {static_cast<signed int>(constants::window_width), static_cast<signed int>(constants::window_height)},
-		"Simple Breakout Game Version 7"s };
+	sf::RenderWindow game_window{ {static_cast<unsigned int>(constants::window_width), static_cast<unsigned int>(constants::window_height)},
+		"Simple Breakout Game Version 8"s };
 
 	// Limit the framerate
 	// This allows other processes to run and reduces power consumption
@@ -79,10 +79,26 @@ int main() {
 		the_ball.update();
 		the_paddle.update();
 
-		for (auto& b : bricks)
+		for (auto& b : bricks) {
 			b.update();
+		}
 
 		handle_collision(the_ball, the_paddle);
+
+		// Check every brick for a collision with the ball
+		for (auto& b : bricks) {
+			handle_collision(the_ball, b);
+		}
+
+		// Erase any destroyed bricks from the grid
+
+		// remove_if moves all elements to the back for which the conditional is true
+		// It returns an iterator to the first moved element
+		// We then call erase with this iterator as argument
+		// This will erase every element following this iterator
+		bricks.erase(std::remove_if(std::begin(bricks), std::end(bricks),
+			[](const brick& b) { return b.is_destroyed(); }),
+			std::end(bricks));
 
 		// Display the updated graphics
 		the_background.draw(game_window);
