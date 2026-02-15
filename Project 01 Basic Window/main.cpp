@@ -8,6 +8,7 @@
 #include "background.h"
 #include "ball.h"
 #include "constants.h"
+#include "paddle.h"
 
 using namespace std::literals;
 
@@ -19,12 +20,15 @@ int main() {
 	// Create a ball object in the middle of the screen
 	ball the_ball(constants::window_width / 2.0f, constants::window_height / 2.0f);
 
+	// Create a paddle object at the bottom of the screen in the middle
+	paddle the_paddle(constants::window_width / 2.0f, constants::window_height - constants::paddle_height);
+
 	// Create the game's window using an object of class RenderWindow
 	// The constructor takes an SFML 2D vector with the window dimensions
 	// and an std::string with the window title
 	// The SFML code is in the sf namespace
 	sf::RenderWindow game_window{ {static_cast<unsigned int>(constants::window_width), static_cast<unsigned int>(constants::window_height)},
-					 "Simple Breakout Game Version 2"s };
+					 "Simple Breakout Game Version 4"s };
 
 	// Limit the framerate
 	// This allows other processes to run and reduces power consumption
@@ -55,10 +59,12 @@ int main() {
 		// Calculate the updated graphics
 		the_background.update();
 		the_ball.update();
+		the_paddle.update();
 
 		// Display the updated graphics
 		the_background.draw(game_window);
 		the_ball.draw(game_window);
+		the_paddle.draw(game_window);
 		game_window.display();
 	}
 }
