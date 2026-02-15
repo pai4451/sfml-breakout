@@ -33,6 +33,16 @@ void paddle::draw(sf::RenderWindow& window) {
 	window.draw(sprite);
 }
 
+void paddle::move_up() noexcept {}
+
+void paddle::move_left() noexcept {
+	velocity.x = -constants::paddle_speed;
+}
+
+void paddle::move_right() noexcept {
+	velocity.x = constants::paddle_speed;
+}
+
 // Respond to input from the player
 // If the player presses the left arrow key, move to the left (negative velocity)
 // If the player presses the right arrow key, move to the right (positive velocity)

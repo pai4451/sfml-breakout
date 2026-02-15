@@ -12,6 +12,22 @@ ball::ball(float x, float y) : moving_entity() {
 	// Use (x, y) for the initial position of the ball
 	sprite.setPosition(x, y);
 	velocity = { constants::ball_speed, constants::ball_speed };
+
+	// By default, operations are relative to the sprite's top lh corner
+	// Make them relative to the sprite's centre
+	sprite.setOrigin(get_centre());
+}
+
+void ball::move_up() noexcept {
+	velocity.y = -constants::ball_speed;
+}
+
+void ball::move_left() noexcept {
+	velocity.x = -constants::ball_speed;
+}
+
+void ball::move_right() noexcept {
+	velocity.x = constants::ball_speed;
 }
 
 // Compute the ball's new position

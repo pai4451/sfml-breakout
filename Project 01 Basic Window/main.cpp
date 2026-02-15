@@ -8,6 +8,7 @@
 #include "background.h"
 #include "ball.h"
 #include "constants.h"
+#include "interactions.h"
 #include "paddle.h"
 
 using namespace std::literals;
@@ -28,7 +29,7 @@ int main() {
 	// and an std::string with the window title
 	// The SFML code is in the sf namespace
 	sf::RenderWindow game_window{ {static_cast<unsigned int>(constants::window_width), static_cast<unsigned int>(constants::window_height)},
-					 "Simple Breakout Game Version 4"s };
+					 "Simple Breakout Game Version 6"s };
 
 	// Limit the framerate
 	// This allows other processes to run and reduces power consumption
@@ -60,6 +61,7 @@ int main() {
 		the_background.update();
 		the_ball.update();
 		the_paddle.update();
+		handle_collision(the_ball, the_paddle);
 
 		// Display the updated graphics
 		the_background.draw(game_window);
