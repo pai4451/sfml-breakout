@@ -18,6 +18,7 @@ struct constants {
 	static constexpr int brick_strength{ 3 };         // How many times a brick can be hit
 	static constexpr int brick_columns{ 10 };
 	static constexpr int brick_rows{ 4 };
+	static constexpr int player_lives{ 3 };           // How many lives a player has to start with
 };
 
 #endif // CONSTANTS_H
